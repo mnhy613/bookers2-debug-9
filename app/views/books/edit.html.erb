@@ -1,0 +1,32 @@
+<div class="container">
+      <div class="row">
+      <div class="col-xs-6 col-md-offset-3">
+
+        <h1>Editing Book</h1>
+        <% if @book.errors.any? %>
+        <%= @book.errors.count %>error prohibited this obj from being saved:
+        <% @book.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+        <% end %>
+        <%= form_for (@book) do |f| %> 
+       <div class:"col-xs-6 col-md-offset-3">
+        <p>Title</p>
+        <%= f.text_field :title, class:"col-xs-12" %><br>
+        <p>Opinion</p>
+        <%= f.text_field :body, class:"col-xs-12" %><br>
+        <p></p><br>
+
+        <%= f.submit "Update Book", class:"btn btn-primary col-xs-12" %></div><br>
+
+        <% end %>
+        
+        <%= link_to "Show", @book, class: "book_#{@book.id}" %>
+        <%= link_to "Back", books_path, class: "back" %>
+        </div>
+      </div>
+      </div>
+
+
+      
+</div>
