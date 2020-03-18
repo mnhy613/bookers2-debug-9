@@ -1,13 +1,17 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  def show
+	def show
+		@new = Book.new
 		@book = Book.find(params[:id])
 		@user = @book.user
+		@book_comment = BookComment.new
+		
+    
   end
 
   def index
 		@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
-		@book = Book.new
+		@new = Book.new
   end
 
   def create
@@ -15,9 +19,9 @@ class BooksController < ApplicationController
 		@book.user = current_user
 		if @book.save 
 			flash[:success] = "You have creatad book successfully."
-  		redirect_to @book, notice: "successfully created book!"#保存された場合の移動先を指定。
+  		redirect_to book_path(@book)
   	else
-  		@books = Book.all
+  		
   		render 'index'
   	end
   end
