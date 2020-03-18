@@ -1,10 +1,10 @@
-<%= form_for(new) do |f| %>
-	<% if new.errors.any? %>
-	<%= new.errors.count %>errors prohibited this obj from being saved:
-	<% new.errors.full_messages.each do |message| %>
-	<%= message %>
-	<% end %>
-<% end %>
+<%= form_for(book) do |f| %>
+	<% if book.errors.any? %>
+          <%= book.errors.count %>errors prohibited this obj from being saved:
+          <% book.errors.full_messages.each do |message| %>
+					<%= message %>
+					<% end %>
+ <% end %>
 	<div class="row">
 		<h2>title</h2>
 		<%= f.text_field :title, class: "col-xs-12 book_title" %>
