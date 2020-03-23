@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 get 'users/:id/follows' => 'users#follows', as:'follows_users'
 get 'users/:id/followers' => 'users#followers', as:'followers_users'
 
-  
+get 'search' => 'searches#search'
+# get 'results' => 'searches#index'
+
   resources :users do
     member do
       get :following, :followers
@@ -21,5 +23,4 @@ get 'users/:id/followers' => 'users#followers', as:'followers_users'
     resource :book_comments, only: [:create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]
-
 end

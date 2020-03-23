@@ -40,15 +40,15 @@
 					<td>
 					<% if book.favorited_by?(current_user) %>
 					
-						<%= link_to book_favorites_path(book), class: "btn btn-block btn-default" ,method: :delete do %>
-							<%= book.favorites.count %> いいねを削除
+						<%= link_to book_favorites_path(book), class: "glyphicon glyphicon-heart" ,method: :delete do %>
+							<%= book.favorites.count %> 
 						<% end %>
 					
 					<% else %>
 						
-							<%= link_to book_favorites_path(book),class: "btn btn-block btn-default glyphicon glyphicon-thumbs-up", method: :post do %>
+							<%= link_to book_favorites_path(book),class: "glyphicon glyphicon-heart-empty", method: :post do %>
 							
-								<%= book.favorites.count %> いいね
+								<%= book.favorites.count %> 
 							<% end %>
 						
 					<% end %>

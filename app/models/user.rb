@@ -22,7 +22,19 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
- 
+  def self.search(search,word)
+		if search == "forward_match"
+						@user = User.where("name LIKE?","#{word}%")
+		elsif search == "backward_match"
+						@user = User.where("name LIKE?","%#{word}")
+		elsif search == "perfect_match"
+						@user = User.where("#{word}")
+		elsif search == "partial_match"
+						@user = User.where("name LIKE?","%#{word}%")
+		else
+						@user = User.all
+		end
+  end
  
   # has_many :active_relationships, class_name:  "Relationship",
   # foreign_key: "follower_id",
