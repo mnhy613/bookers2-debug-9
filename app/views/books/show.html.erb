@@ -54,69 +54,14 @@
 				</tr>
 			 </tbody>
 			</table>
-			
-			
-	<table class="col-xs-12">	
-	 <tbody>
-	 <% @book.book_comments.each do |book_comment| %>
-		
-		<tr class="comment">
-		  <td>
-				<div class="comment-body bb">
-						<div class="comment-avatar">
-								<div class="avatar">
-								<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %>
-								</div>
-						</div>
-			</td>
-			<td>
-		        <div class="comment-text">
-								<div class="comment-author">
-										<a href="#" class="link-author"><%= book_comment.user.name %></a>
-			</td>		
-			<td>					
-										<span class="comment-meta">
-											<span class="comment-date"><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
-										</span>
-								</div>
-			</td>
-			<td>	
-						<div class="comment-entry"><%= book_comment.comment %></div>
-			</td>
-			<td>
-		       
-							<% if @book.user == current_user %>
-							<%= link_to "Destroy",book_book_comments_path(@book.book_comments), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger " %>
-							<% end %>
-			</td>  
-		</tr>
-		<% end %>
-	 </div>
-	 </tbody>
-	</table>
-		
-	          <div class="comment-list bt style-2" id="comments">
-								<div class="float-wrapper">
-										<a class="comment-count"><%= @book.book_comments.count %>件コメント</a>
-								</div>
-						</div>		
-	<%= form_for [@book, @book_comment] do |f| %>
-    <% if @book_comment.errors.any? %>
-			<h3><%= @book_comment.errors.count %>error occurrence</h3>
-			<ul>
-				<% @book_comment.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-				<% end %>
-			</ul>
-		<% end %>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-        </div>
-    </div>
-		<%= f.submit "送信する", class: "btn btn-primary btn-base-1 mt-20 pull-right" %>
-		<% end %>
+			<div id='comment_area'>
+					<%= render 'book_comments/index', books: @books, book: @book %>
+			</div>
+						
+			<div  id="comment_form">
+					<%= render 'book_comments/newform', books: @books,  book: @book, book_comment: @book_comment %>
+			</div>
 	</div>
 </div>
 </div>

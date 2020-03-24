@@ -1,0 +1,43 @@
+<table class="col-xs-12">	
+	 <tbody>
+	 <% book.book_comments.each do |book_comment| %>
+		
+		<tr class="comment">
+		  <td>
+				<div class="comment-body bb">
+						<div class="comment-avatar">
+						<div class="avatar">
+						<%= attachment_image_tag(book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %>
+						</div>
+				</div>
+			</td>
+			<td>
+				<div class="comment-text">
+					<div class="comment-author">
+						<a href="#" class="link-author">
+						<%= book_comment.user.name %></a>
+					</div>
+	    </td>		
+			<td>					
+				<span class="comment-meta">
+					<span class="comment-date"><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
+				</span>
+				</div>
+			</td>
+			<td>	
+				<div class="comment-entry"><%= book_comment.comment %></div>
+			</td>
+			<% unless current_user != book_comment.user %>
+			<td><%= link_to book_book_comments_path(book_comment.id), method: :delete, remote: true  do %> <button class="btn btn-danger">destroy</button><% end %></td>
+      <% end %>
+		</tr>
+		<% end %>
+	 </div>
+	 </tbody>
+</table>
+		<div class="comment-list bt style-2" id="comments">
+				<div class="float-wrapper">
+						<a class="comment-count"><%= book.book_comments.count %>件コメント</a>
+				</div>
+		</div>		
+	

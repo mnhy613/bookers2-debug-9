@@ -16,18 +16,13 @@ class BookCommentsController < ApplicationController
   end
   
   def destroy
-    book = Book.find(params[:book_id])
-    # @url = request.referer
-    book_comment = current_user.book_comments.find_by(book_id: book.id)
-    book_comment.destroy
-    # if @url.include?("books/")
-   
-    # redirect_to book_path(book)
-    # else
-    redirect_to request.referrer || root_url
+    @book_comment = BookComment.find(params[:book_id])
+    if @book_comment.user != current_user
+      redirect_to request.referer
+    end
+    @book_comment.destroy
+    redirect_to request.referer
     flash[:success] = "successfully delete comment!"
-    # redirect_to books_path
-    
   end
   
   

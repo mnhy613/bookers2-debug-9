@@ -8,9 +8,7 @@ class FavoritesController < ApplicationController
     #    redirect_to book_path(book)
     # else
 
-  #  redirect_to books_path
-    
-  #   end
+  
   redirect_to request.referrer || root_url
 
    end
@@ -25,8 +23,15 @@ class FavoritesController < ApplicationController
     # redirect_to book_path(book)
     # else
     redirect_to request.referrer || root_url
-    # redirect_to books_path
+ 
     
+  end
+
+  private
+
+  def set_variables
+    @book = Book.find(params[:book_id])
+    @id_name = "#like-link-#{@book.id}"
   end
 
 end
