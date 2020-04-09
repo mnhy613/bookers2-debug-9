@@ -71,3 +71,8 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'pry-rails'
+
+gem 'jp_prefecture'
+
+gem 'simple_form'
+
